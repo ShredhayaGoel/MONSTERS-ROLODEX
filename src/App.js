@@ -35,21 +35,13 @@ class App extends Component {
           })}
 
           <button onClick={() => {
-
-            //   this.state.name = ' SHUBH GOEL'   // this.setState(this.state);
-            /*  this.setState({
-                name: { firstname: 'Shredhaya', lastname: 'Goel' },
-              });*/
-
+            
             console.log(this.state.name);
             this.setState(
-              /*   () => {
-                   return {
-                     name: { firstname: 'Shredhaya', lastname: 'Goel' },
-                   };
-                 },*/
               () => {
                 return {
+                  name: { firstname: 'Shredhaya', lastname: 'Goel' },
+
                   monsters: [
                     { id: 1, name: 'monster A' },
                     { id: 2, name: 'monster B' },
