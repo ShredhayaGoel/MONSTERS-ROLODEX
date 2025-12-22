@@ -7,11 +7,13 @@ class App extends Component {
     console.log('1');
 
     super();
+
     this.state = {
       name: { firstname: 'Shubh', lastname: 'Goel' },
       monsters: [
 
-      ]
+      ],
+      SearchField: '',
 
     };
   }
@@ -34,6 +36,12 @@ class App extends Component {
 
   render() {
     console.log('2');
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+
+      return monster.name.toLocaleLowerCase().includes(this.state.SearchField);
+    }
+    );
+
     return (
       <div className='App'>
         <header className='App-header'>
@@ -41,18 +49,15 @@ class App extends Component {
           <input className='search-box' type='search' placeholder='search monsters' onChange={(event) => {
             // console.log(event.target.value);
 
-            const searchstring = event.target.value.toLowerCase();
+            const SearchField = event.target.value.toLowerCase();
 
-            console.log(searchstring); // it converts my input value to Lowercase (that what i types in the input searchbox)
+            console.log(SearchField); // it converts my input value to Lowercase (that what i types in the input searchbox)
 
-            const filteredMonsters = this.state.monsters.filter((monster) => {
 
-              return monster.name.toLocaleLowerCase().includes(searchstring);
-            });
             // console.log(filteredMonsters);
 
             this.setState(() => {
-              return { monsters: filteredMonsters }
+              return { SearchField }
             });
 
           }} />
@@ -60,7 +65,7 @@ class App extends Component {
 
 
           <p>Hi {this.state.name.firstname} {this.state.name.lastname}</p>
-          {this.state.monsters.map((monster) => {
+          {filteredMonsters.map((monster) => {
             return <h1 key={monster.id}>{monster.name}</h1>
           })}
 
