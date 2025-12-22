@@ -38,6 +38,27 @@ class App extends Component {
       <div className='App'>
         <header className='App-header'>
           <img src={logo} className='App-logo' alt='logo' />
+          <input className='search-box' type='search' placeholder='search monsters' onChange={(event) => {
+            // console.log(event.target.value);
+
+            const searchstring = event.target.value.toLowerCase();
+
+            console.log(searchstring); // it converts my input value to Lowercase (that what i types in the input searchbox)
+
+            const filteredMonsters = this.state.monsters.filter((monster) => {
+
+              return monster.name.toLocaleLowerCase().includes(searchstring);
+            });
+            // console.log(filteredMonsters);
+
+            this.setState(() => {
+              return { monsters: filteredMonsters }
+            });
+
+          }} />
+
+
+
           <p>Hi {this.state.name.firstname} {this.state.name.lastname}</p>
           {this.state.monsters.map((monster) => {
             return <h1 key={monster.id}>{monster.name}</h1>
