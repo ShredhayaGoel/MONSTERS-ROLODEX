@@ -18,6 +18,20 @@ class App extends Component {
     };
   }
 
+  onsearchChange = (event) => {
+    const SearchField = event.target.value.toLowerCase();
+
+    console.log(SearchField); // it converts my input value to Lowercase (that what i types in the input searchbox)
+
+
+    // console.log(filteredMonsters);
+
+    this.setState(() => {
+      return { SearchField }
+    });
+
+  }
+
   componentDidMount() {
     console.log('3');
 
@@ -46,21 +60,10 @@ class App extends Component {
       <div className='App'>
         <header className='App-header'>
           <img src={logo} className='App-logo' alt='logo' />
-          <input className='search-box' type='search' placeholder='search monsters' onChange={(event) => {
-            // console.log(event.target.value);
+          <input className='search-box' type='search' placeholder='search monsters' onChange={this.onsearchChange}
+          // console.log(event.target.value);
 
-            const SearchField = event.target.value.toLowerCase();
-
-            console.log(SearchField); // it converts my input value to Lowercase (that what i types in the input searchbox)
-
-
-            // console.log(filteredMonsters);
-
-            this.setState(() => {
-              return { SearchField }
-            });
-
-          }} />
+          />
 
 
 
