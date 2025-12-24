@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Cardlist from './components/card-list/Cardlist.js';
+
 
 class App extends Component {
   constructor() {
-    console.log('1');
+    // console.log('1');
 
     super();
 
     this.state = {
-      name: { firstname: 'Shubh', lastname: 'Goel' },
       monsters: [
 
       ],
@@ -33,28 +34,27 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('3');
+    //console.log('3');
 
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users) => this.setState(
         () => {
           return { monsters: users };
-        },
-        () => {
-          console.log(this.state.monsters);
         }
       )
       );
   }
 
   render() {
-    console.log('2');
+    // console.log('2');
     const filteredMonsters = this.state.monsters.filter((monster) => {
 
       return monster.name.toLocaleLowerCase().includes(this.state.SearchField);
     }
     );
+
+
 
     return (
       <div className='App'>
@@ -65,28 +65,17 @@ class App extends Component {
 
           />
 
+          {/* <Cardlist monster = {'hi this is also a card'} anything = {['a','1',   2]} /> */}
+
+          <Cardlist monsters={filteredMonsters} />
 
 
-          <p>Hi {this.state.name.firstname} {this.state.name.lastname}</p>
-          {filteredMonsters.map((monster) => {
-            return <h1 key={monster.id}>{monster.name}</h1>
-          })}
 
           <button onClick={() => {
 
             console.log(this.state.name);
             this.setState(
-              () => {
-                return {
-                  name: { firstname: 'Shredhaya', lastname: 'Goel' },
 
-                  monsters: [
-                    { id: 1, name: 'monster A' },
-                    { id: 2, name: 'monster B' },
-                    { id: 3, name: 'monster C' },
-                  ],
-                };
-              },
               () => {
                 console.log(this.state.monsters);
               }
